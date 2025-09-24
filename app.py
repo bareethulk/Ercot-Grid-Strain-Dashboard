@@ -26,7 +26,7 @@ plt.rcParams.update({
 st.markdown("""
     <style>
     body {
-        background-color: #0e1117;
+        background-color: #111;
         color: white;
     }
     .stApp {
