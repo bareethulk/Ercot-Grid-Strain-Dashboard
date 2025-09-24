@@ -25,14 +25,13 @@ plt.rcParams.update({
 
 st.markdown("""
     <style>
-    /* Existing styles... */
-
     body {
-        background-color: #111;
+        background-color: #0e1117;
         color: white;
     }
-
-    /* Fix for metric truncation */
+    .stApp {
+        background-color: #0e1117;
+    
     [data-testid="stMetricValue"] {
         white-space: normal;
         font-weight: bold;
