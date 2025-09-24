@@ -18,12 +18,13 @@ An interactive Streamlit dashboard was developed to explore grid stress, fuel de
 - NOAA temperature data.
 - EPA CAMPD emissions (2024 proxy for CO₂).
 
-⚠️ Note: Due to size limits, the GitHub repo includes a **subset CSV** (`grid_strain_enriched.csv`) for demo purposes. Full dataset can be reproduced using the cleaning notebook.
-
-## 💻 Run Locally
+## Live demo
+https://ercot-grid-strain-dashboard-jbk.streamlit.app/ 
+## Run Locally
 Clone this repo and install dependencies:
 ```bash
 git clone https://github.com/<your-username>/ercot-grid-strain-dashboard.git
 cd ercot-grid-strain-dashboard
 pip install -r requirements.txt
 streamlit run app.py
+
