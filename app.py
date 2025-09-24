@@ -57,7 +57,7 @@ def load_data():
         Loads ERCOT dataset, cleans invalid values, and creates useful features.
         Cached so it runs only once unless the file changes.
         """
-    csv_path = os.path.join("/Users/bareeth/PycharmProjects/grid_strain_dashboard", "grid_strain_enriched.csv") # Path to dataset
+    csv_path = "grid_strain_enriched.csv"  # Path to dataset
     df = pd.read_csv(csv_path, parse_dates=["Datetime"]) # Load CSV into DataFrame, parse Datetime column into proper datetime objects
     df["Temperature_C"] = pd.to_numeric(df["Temperature_C"], errors="coerce")   # Convert Temperature to numeric (any errors become NaN)
     df["Temperature_C"] = df["Temperature_C"].replace(999.9, pd.NA) # Replace placeholder 999.9 with NaN (represents missing sensor readings)
