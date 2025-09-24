@@ -1,2 +1,29 @@
-# Ercot-Grid-Strain-Dashboard
-The ERCOT Grid Strain Dashboard is an interactive analytics tool built in Streamlit to explore grid stress conditions in the ERCOT system during June 2025. The dashboard integrates multiple datasets; hourly demand, generation by fuel type, temperature, and CO₂ emissions, into a unified platform for exploratory data analysis and visualization.
+# ERCOT Grid Strain Dashboard
+
+## Overview
+This project analyzes ERCOT June 2025 grid strain conditions using system demand, generation mix, temperature, and CO₂ emissions data.  
+An interactive Streamlit dashboard was developed to explore grid stress, fuel dependence, and emissions intensity during periods of high demand.
+
+## Features
+- Dynamic filtering by **date** and **hour range**.
+- Key Metrics: Peak demand, max temperature, grid strain hours, avg CO₂ intensity.
+- Visualizations:
+  - Demand: hourly patterns, histograms, time trends.
+  - Temperature vs Demand: scatter, hourly overlays, regression lines, temperature bins.
+  - Generation: hourly fuel mix, strain vs normal fuel share.
+  - Emissions: time trends, correlation heatmap.
+
+## Dataset
+- ERCOT system demand and generation data (June 2025).
+- NOAA temperature data.
+- EPA CAMPD emissions (2024 proxy for CO₂).
+
+⚠️ Note: Due to size limits, the GitHub repo includes a **subset CSV** (`grid_strain_enriched.csv`) for demo purposes. Full dataset can be reproduced using the cleaning notebook.
+
+## 💻 Run Locally
+Clone this repo and install dependencies:
+```bash
+git clone https://github.com/<your-username>/ercot-grid-strain-dashboard.git
+cd ercot-grid-strain-dashboard
+pip install -r requirements.txt
+streamlit run app.py
