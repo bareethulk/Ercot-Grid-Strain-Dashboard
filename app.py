@@ -176,21 +176,11 @@ with tab1:
 with tab2:
     # Scatter plot: temperature vs demand
     st.subheader("Temperature vs Total Demand (Colored by Hour)")
-    # Ensure numeric + drop missing
-    scatter_df = filtered_df[["Temperature_C", "Total_Demand_MWh", "Hour"]].copy()
-    scatter_df = scatter_df.dropna(subset=["Temperature_C", "Total_Demand_MWh", "Hour"])
-    # Confirm we have data before plotting
-    if scatter_df.empty:
-    st.warning("⚠️ No data available for the selected filters.")
-    else:
-    fig, ax = plt.subplots(figsize=(8, 4))
-    scatter = ax.scatter(
-        scatter_df["Temperature_C"],
-        scatter_df["Total_Demand_MWh"],
-        c=scatter_df["Hour"],
-        cmap="coolwarm",
-        alpha=0.7
+    sns.scatterplot(
+    data=filtered_df, x="Temperature_C", y="Total_Demand_MWh",
+    hue="Hour", palette="coolwarm", alpha=0.7, ax=ax
     )
+    plt.legend(title="Hour of Day", bbox_to_anchor=(1.05, 1), loc='upper left')
     ax.set_xlabel("Temperature (°C)")
     ax.set_ylabel("Total Demand (MWh)")
     cbar = plt.colorbar(scatter, ax=ax)
