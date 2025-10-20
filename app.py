@@ -174,17 +174,13 @@ with tab1:
 
 # Tab 2: Temperature
 with tab2:
-    # Scatter plot: temperature vs demand
-    st.subheader("Temperature vs Total Demand (Colored by Hour)")
-    sns.scatterplot(
-    data=filtered_df, x="Temperature_C", y="Total_Demand_MWh",
-    hue="Hour", palette="coolwarm", alpha=0.7, ax=ax
-    )
-    plt.legend(title="Hour of Day", bbox_to_anchor=(1.05, 1), loc='upper left')
-    ax.set_xlabel("Temperature (°C)")
-    ax.set_ylabel("Total Demand (MWh)")
-    cbar = plt.colorbar(scatter, ax=ax)
-    cbar.set_label("Hour of Day")
+    # Scatter plot: temperature vs demand 
+    st.subheader("Temperature vs Total Demand") 
+    fig, ax = plt.subplots(figsize=(8, 4)) 
+    sns.scatterplot(data=filtered_df, x="Temperature_C", y="Total_Demand_MWh", alpha=0.6, color="teal", ax=ax) 
+    ax.set_xlabel("Temperature (°C)") 
+    ax.set_ylabel("Total Demand (MWh)") 
+    sns.scatterplot(data=df, x="Temperature_C", y="Total_Demand_MWh", hue=df["Hour"], palette="coolwarm") 
     st.pyplot(fig)
 
     st.subheader("Temperature (°C) During Grid Strain vs Normal")
