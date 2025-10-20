@@ -175,16 +175,26 @@ with tab1:
 # Tab 2: Temperature
 with tab2:
     # Scatter plot: temperature vs demand
-    st.subheader("Temperature vs Total Demand")
+    st.subheader("Temperature vs Total Demand (Colored by Hour)")
+    # Ensure numeric + drop missing
+    scatter_df = filtered_df[["Temperature_C", "Total_Demand_MWh", "Hour"]].copy()
+    scatter_df = scatter_df.dropna(subset=["Temperature_C", "Total_Demand_MWh", "Hour"])
+    # Confirm we have data before plotting
+    if scatter_df.empty:
+    st.warning("⚠️ No data available for the selected filters.")
+    else:
     fig, ax = plt.subplots(figsize=(8, 4))
-    sns.scatterplot(data=filtered_df, x="Temperature_C", y="Total_Demand_MWh", alpha=0.6, color="teal", ax=ax)
+    scatter = ax.scatter(
+        scatter_df["Temperature_C"],
+        scatter_df["Total_Demand_MWh"],
+        c=scatter_df["Hour"],
+        cmap="coolwarm",
+        alpha=0.7
+    )
     ax.set_xlabel("Temperature (°C)")
     ax.set_ylabel("Total Demand (MWh)")
-    scatter = plt.scatter(
-        filtered_df["Temperature_C"], filtered_df["Total_Demand_MWh"],
-        c=filtered_df["Hour"], cmap="coolwarm", alpha=0.7
-    )
-    plt.colorbar(scatter, label="Hour of Day")
+    cbar = plt.colorbar(scatter, ax=ax)
+    cbar.set_label("Hour of Day")
     st.pyplot(fig)
 
     st.subheader("Temperature (°C) During Grid Strain vs Normal")
