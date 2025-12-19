@@ -388,8 +388,7 @@ if len(trend_df) >= 3:  # safety check for polynomial fit
     )
 
 # Render chart
-st.plotly_chart(fig, use_container_width=True)
-
+    
     with col2:
     # Temperature comparison: strain vs normal
     strain_temps = filtered_df[filtered_df["Grid_Strain_Flag"]]["Temperature_C"]
