@@ -389,37 +389,37 @@ if len(trend_df) >= 3:  # safety check for polynomial fit
 
 # Render chart
 st.plotly_chart(fig, use_container_width=True)
-    
+
     with col2:
-        # Temperature comparison: strain vs normal
-        strain_temps = filtered_df[filtered_df["Grid_Strain_Flag"]]["Temperature_C"]
-        normal_temps = filtered_df[~filtered_df["Grid_Strain_Flag"]]["Temperature_C"]
-        
-        fig = go.Figure()
-        
-        fig.add_trace(go.Box(
-            y=normal_temps,
-            name="Normal",
-            marker_color='#4c4c4c',
-            boxmean='sd'
-        ))
-        
-        fig.add_trace(go.Box(
-            y=strain_temps,
-            name="Grid Strain",
-            marker_color='#ff6b6b',
-            boxmean='sd'
-        ))
-        
-        fig.update_layout(
-            title="Temperature During Grid Strain vs Normal",
-            yaxis_title="Temperature (°C)",
-            template="plotly_dark",
-            height=400
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
-    
+    # Temperature comparison: strain vs normal
+    strain_temps = filtered_df[filtered_df["Grid_Strain_Flag"]]["Temperature_C"]
+    normal_temps = filtered_df[~filtered_df["Grid_Strain_Flag"]]["Temperature_C"]
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Box(
+        y=normal_temps,
+        name="Normal",
+        marker_color="#4c4c4c",
+        boxmean="sd"
+    ))
+
+    fig.add_trace(go.Box(
+        y=strain_temps,
+        name="Grid Strain",
+        marker_color="#ff6b6b",
+        boxmean="sd"
+    ))
+
+    fig.update_layout(
+        title="Temperature During Grid Strain vs Normal",
+        yaxis_title="Temperature (°C)",
+        template="plotly_dark",
+        height=400
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
     # Dual axis: temp and demand by hour
     st.markdown("### ⏰ Hourly Temperature and Demand Patterns")
     
