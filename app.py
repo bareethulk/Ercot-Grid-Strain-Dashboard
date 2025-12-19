@@ -364,21 +364,31 @@ with tab2:
         
         # Add trendline
         
-# Trendline (2nd order polynomial) using rows where both x and y exist
+# Prepare data for trendline
 trend_df = filtered_df.dropna(subset=["Temperature_C", "Total_Demand_MWh"])
-z = np.polyfit(trend_df["Temperature_C"], trend_df["Total_Demand_MWh"], 2)
-p = np.poly1d(z)
-x_trend = np.linspace(trend_df["Temperature_C"].min(), trend_df["Temperature_C"].max(), 100)
-        
-        fig.add_trace(go.Scatter(
+
+if len(trend_df) >= 3:  # safety check for polynomial fit
+    z = np.polyfit(trend_df["Temperature_C"], trend_df["Total_Demand_MWh"], 2)
+    p = np.poly1d(z)
+
+    x_trend = np.linspace(
+        trend_df["Temperature_C"].min(),
+        trend_df["Temperature_C"].max(),
+        100
+    )
+
+    fig.add_trace(
+        go.Scatter(
             x=x_trend,
             y=p(x_trend),
-            mode='lines',
-            name='Polynomial Fit',
-            line=dict(color='red', width=2, dash='dash')
-        ))
-        
-        st.plotly_chart(fig, use_container_width=True)
+            mode="lines",
+            name="Polynomial Fit",
+            line=dict(color="red", width=2, dash="dash")
+        )
+    )
+
+# Render chart
+st.plotly_chart(fig, use_container_width=True)
     
     with col2:
         # Temperature comparison: strain vs normal
